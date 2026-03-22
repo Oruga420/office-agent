@@ -2,7 +2,8 @@
 
 ## Repository
 - **Name**: office-agent
-- **Visibility**: Private
+- **Visibility**: Public
+- **License**: MIT
 - **Owner**: Oruga420
 
 ## PR Log

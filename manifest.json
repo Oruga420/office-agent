@@ -1,12 +1,12 @@
 {
   "display_information": {
-    "name": "Office Agent",
+    "name": "Luna",
     "description": "AI-powered office assistant with hybrid routing",
     "background_color": "#1a1a2e"
   },
   "features": {
     "bot_user": {
-      "display_name": "Office Agent",
+      "display_name": "Luna",
       "always_online": true
     },
     "slash_commands": [

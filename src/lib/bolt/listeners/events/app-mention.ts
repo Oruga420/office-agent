@@ -28,7 +28,7 @@ export function registerAppMention(app: App): void {
     const cleanText = text.replace(/<@[A-Z0-9]+>/g, "").trim();
     if (!cleanText) {
       await say({
-        text: "How can I help? Mention me with a question.",
+        text: "Hey! I'm Luna. Mention me with a question and I'll help.",
         thread_ts: threadTs ?? ts,
       });
       return;
