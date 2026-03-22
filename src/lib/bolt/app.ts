@@ -1,33 +1,36 @@
-import { App } from "@slack/bolt";
-import { VercelReceiver } from "@vercel/slack-bolt";
+import { App, ExpressReceiver } from "@slack/bolt";
 import { getEnv } from "@/lib/config/env";
 import { registerListeners } from "./listeners";
 
-let receiver: VercelReceiver | null = null;
 let app: App | null = null;
 
-function ensureInitialized(): { app: App; receiver: VercelReceiver } {
-  if (receiver && app) {
-    return { app, receiver };
-  }
-
+function createApp(): App {
   const env = getEnv();
 
-  receiver = new VercelReceiver({
+  const receiver = new ExpressReceiver({
     signingSecret: env.SLACK_SIGNING_SECRET,
   });
 
-  app = new App({
+  const boltApp = new App({
     token: env.SLACK_BOT_TOKEN,
-    signingSecret: env.SLACK_SIGNING_SECRET,
     receiver,
   });
 
-  registerListeners(app);
-
-  return { app, receiver };
+  registerListeners(boltApp);
+  return boltApp;
 }
 
-export function getReceiver(): VercelReceiver {
-  return ensureInitialized().receiver;
+export function getApp(): App {
+  if (!app) {
+    app = createApp();
+  }
+  return app;
+}
+
+export async function start(): Promise<void> {
+  const env = getEnv();
+  const boltApp = getApp();
+  const port = env.PORT;
+  await boltApp.start(port);
+  console.log(`Luna is running on port ${port}`);
 }

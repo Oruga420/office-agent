@@ -15,6 +15,9 @@ const envSchema = z.object({
   ANTHROPIC_API_KEY: z.string().min(1, "ANTHROPIC_API_KEY is required"),
   CLAUDE_MODEL: z.string().default("claude-sonnet-4-20250514"),
 
+  // Server
+  PORT: z.coerce.number().default(3000),
+
   // Rate limiting
   RATE_LIMIT_MAX_PER_MINUTE: z.coerce.number().int().positive().default(20),
   RATE_LIMIT_MAX_PER_HOUR: z.coerce.number().int().positive().default(200),

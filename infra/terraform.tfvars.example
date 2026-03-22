@@ -1,0 +1,7 @@
+# =============================================================================
+# Example tfvars — copy to terraform.tfvars and fill in your values
+# =============================================================================
+# cp terraform.tfvars.example terraform.tfvars
+# =============================================================================
+
+project_id = "your-gcp-project-id"
