@@ -1,0 +1,59 @@
+{
+  "display_information": {
+    "name": "Office Agent",
+    "description": "AI-powered office assistant with hybrid routing",
+    "background_color": "#1a1a2e"
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "Office Agent",
+      "always_online": true
+    },
+    "slash_commands": [
+      {
+        "command": "/ask",
+        "url": "https://YOUR_VERCEL_URL/api/slack/events",
+        "description": "Quick answer (Nemotron) — ephemeral response",
+        "usage_hint": "[your question]",
+        "should_escape": false
+      },
+      {
+        "command": "/deep",
+        "url": "https://YOUR_VERCEL_URL/api/slack/events",
+        "description": "Deep analysis (Claude) — visible to channel",
+        "usage_hint": "[your question]",
+        "should_escape": false
+      }
+    ]
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "app_mentions:read",
+        "channels:history",
+        "chat:write",
+        "commands",
+        "im:history",
+        "im:read",
+        "im:write",
+        "groups:history",
+        "users:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://YOUR_VERCEL_URL/api/slack/events",
+      "bot_events": [
+        "app_mention",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": false
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+}
